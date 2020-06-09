@@ -70,3 +70,17 @@ class Stack:
 
         removedItem = self.storage.remove_tail()
         return removedItem
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        #every next iteration, return self.pop, which in turn iterates in the order of what nodes would be in line to be popped off the stack, not in order from head to tail. 
+        #in this case, it also removes items from the stack itself since we are calling self.pop. We normally probably wouldn't want this behavior, however since this is implemented
+        #solely for stretch goals in implementing a queue from stack data structures, this works perfectly.
+        if self.size > 0:
+           return self.pop()
+        else:
+            raise StopIteration
+
+        
